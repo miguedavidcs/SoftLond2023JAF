@@ -1,6 +1,7 @@
 import java.util.Scanner;
+
 /**
- * @author miguel david castaño salgado 
+ * @author miguel david castaño salgado
  */
 public class App {
     /**
@@ -80,23 +81,27 @@ public class App {
             }
         }
 
-        // Ejercicio 8 esto esta comentado para poder hacer consola bien se demora mucho en adivinar8
-/*         System.out.println("\nEjercicio 8: Juego de adivinar un número entre 1 y 100.");
-        int nInconnita = (int) (Math.random() * 100) + 1;
-        int i = 0;//intentos
-        int nIngresado;
-        do {
-            System.out.print("Ingresa un número entre 1 y 100: ");
-            nIngresado = escribir.nextInt();
-            i++;
-            if (nIngresado > nInconnita) {
-                System.out.println("El número ingresado es mayor que el número a adivinar.");
-            } else if (nIngresado < nInconnita) {
-                System.out.println("El número ingresado es menor que el número a adivinar.");
-            }
-        } while (nIngresado != nInconnita);
-        System.out.println("¡Hasta que por fin lo lograste! Adivinaste el número " + nInconnita + " en intentos:" + i);
- */
+        // Ejercicio 8 esto esta comentado para poder hacer consola bien se demora mucho
+        // en adivinar8
+        /*
+         * System.out.
+         * println("\nEjercicio 8: Juego de adivinar un número entre 1 y 100.");
+         * int nInconnita = (int) (Math.random() * 100) + 1;
+         * int i = 0;//intentos
+         * int nIngresado;
+         * do {
+         * System.out.print("Ingresa un número entre 1 y 100: ");
+         * nIngresado = escribir.nextInt();
+         * i++;
+         * if (nIngresado > nInconnita) {
+         * System.out.println("El número ingresado es mayor que el número a adivinar.");
+         * } else if (nIngresado < nInconnita) {
+         * System.out.println("El número ingresado es menor que el número a adivinar.");
+         * }
+         * } while (nIngresado != nInconnita);
+         * System.out.println("¡Hasta que por fin lo lograste! Adivinaste el número " +
+         * nInconnita + " en intentos:" + i);
+         */
         // Ejercicio 9
         System.out.print("\nEjercicio 9: Ingresa un número entero positivo: ");
         int numFactorial = escribir.nextInt();
@@ -122,9 +127,59 @@ public class App {
             v1 = v2;
             v2 = acomulados;
         }
+
+        // Ejercicio 11
+        System.out.println("Ejercicio 11: Cálculo de Área de un Triángulo con la Fórmula de Herón");
+        double a, b, c;
+        do {
+            System.out.print("Ingresa la longitud del primer lado: ");
+            a = escribir.nextDouble();
+            System.out.print("Ingresa la longitud del segundo lado: ");
+            b = escribir.nextDouble();
+            System.out.print("Ingresa la longitud del tercer lado: ");
+            c = escribir.nextDouble();
+        } while (a <= 0 || b <= 0 || c <= 0);
+        double s = (a + b + c) / 2; // Semiperímetro
+        double areaTriangulo = Math.sqrt(s * (s - a) * (s - b) * (s - c));
+        System.out.println("El área del triángulo es: " + areaTriangulo);
+
+        // Ejercicio 12
+        System.out.print("\nEjercicio 12: Determinar si un Número Entero es Primo o No");
+        int n3;
+        do {
+            System.out.print("\nIngresa un número entero mayor que 1: ");
+            n3 = escribir.nextInt();
+        } while (n3 <= 1);
+        boolean esPrimo = true;
+        int i = 2;
+        do {
+            if (n3 % i == 0) {
+                esPrimo = false;
+                break;
+            }
+            i++;
+        } while (i <= Math.sqrt(n3));
+        if (esPrimo) {
+            System.out.println(n3 + " es un número primo.");
+        } else {
+            System.out.println(n3 + " no es un número primo.");
+        }
+         // Ejercicio 13
+         System.out.print("Ejercicio 13: Redondeo de un Número Decimal a una Cantidad Específica de Decimales");
+         System.out.print("\nIngresa un número decimal: ");
+         double x = escribir.nextDouble();
+         System.out.print("Ingresa la cantidad de decimales para redondear: ");
+         int d = escribir.nextInt();
+ 
+         double factor = 1.0;
+         for (int l = 1; l <= d; i++) {
+             factor *= 10;
+         }
+ 
+         double resultadoRedondeo = Math.round(x * factor) / factor;
+         System.out.println("El número redondeado es: " + resultadoRedondeo);
+ 
         escribir.close();
     }
 
-    }
-
-
+}
