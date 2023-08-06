@@ -15,7 +15,7 @@ public class App {
         sistema.asignarCalificacion("Miguel", 3.5);
         sistema.asignarCalificacion("Miguel", 4.5);
 
-        sistema.asignarCalificacion("David", 3.0);
+        sistema.asignarCalificacion("David", 1.0);
         sistema.asignarCalificacion("David", 5.0);
         sistema.asignarCalificacion("David", 5.1);
 

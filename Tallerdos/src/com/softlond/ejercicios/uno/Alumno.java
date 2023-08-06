@@ -8,6 +8,8 @@ public class Alumno {
     private String nombre;
     private int edad;
     private ArrayList<Double> calificaciones;
+     private static final double maxima=5.0;
+     private static final double minimo=0.0;
 
     public Alumno() {
     }
@@ -43,12 +45,13 @@ public class Alumno {
     }
 
     public Mensajes agregarCalificacion(double calificacion) {
-        if (calificacion <= 5.0) {
+        if (calificacion <= maxima && calificacion > minimo) {
             calificaciones.add(calificacion);
             return new Mensajes("Calificación agregada con éxito");
         } else {
             return new Mensajes("Ingresar por favor notas no superiores a 5.0");
         }
+        
     }
 
     public double calcularPromedio() {
@@ -59,8 +62,18 @@ public class Alumno {
         for (double calificacion : calificaciones) {
             sumatoria += calificacion;
         }
-        double redondeo =Math.floor(sumatoria/calificaciones.size());
+        double redondeo =sumatoria/calificaciones.size();
         return redondeo;
+    }
+    public String respuesta(double redondeo){
+        if(redondeo>=3.15){
+            return ("Felicitaciones");
+        }
+        else{
+            return "Uy papa repite semestre";
+        }
+        
+        
     }
 
     public void mostrarInformacion() {
@@ -68,6 +81,9 @@ public class Alumno {
         System.out.println("Edad: " + edad);
         System.out.println("Calificaciones: " + calificaciones);
         System.out.println("Promedio: " + calcularPromedio() + "\n");
+        double r= calcularPromedio();
+        System.out.println(" "+respuesta(r));
+        
     }
 
 }
