@@ -2,6 +2,9 @@ package com.softlond.ejercicios.uno;
 
 import java.util.ArrayList;
 
+import com.softlond.ejercicios.uno.excepcion.Mensajes;
+
+
 public class sistemaAlumnos  {
     private ArrayList <Alumno> alumnos;
      public sistemaAlumnos(){
@@ -13,15 +16,17 @@ public class sistemaAlumnos  {
         alumnos.add(alumno);
      }
      //selest y insert multiple de un parametro
-     public void asignarCalificacion(String nombre ,double Calificacion){
+     public void asignarCalificacion(String nombre, double calificacion) {
         for (Alumno alumno : alumnos) {
-            if(alumno.getNombre().equals(nombre)){
-                if(Calificacion>5.0){
-                    System.out.println("Ingresar por favor notas no superior a 5.0");
+            if (alumno.getNombre().equals(nombre)) {
+                Mensajes mensaje = alumno.agregarCalificacion(calificacion);
+                if (mensaje.esExitoso()) {
+                    System.out.println("Exito: " + mensaje.getMensaje());
+                } else {
+                    System.out.println("Error: " + mensaje.getMensaje());
                 }
-                alumno.agregarCalificacion(Calificacion);;
                 break;
-            }            
+            }
         }
     }
         //Mostar la actulizacion
@@ -31,6 +36,7 @@ public class sistemaAlumnos  {
         }
     
      }
+    
     
     
 }

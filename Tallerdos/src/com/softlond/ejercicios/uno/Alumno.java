@@ -2,6 +2,8 @@ package com.softlond.ejercicios.uno;
 
 import java.util.ArrayList;
 
+import com.softlond.ejercicios.uno.excepcion.Mensajes;
+
 public class Alumno {
     private String nombre;
     private int edad;
@@ -40,8 +42,13 @@ public class Alumno {
         this.calificaciones = calificaciones;
     }
 
-    public void agregarCalificacion(double calificacion) {
-        calificaciones.add(calificacion);
+    public Mensajes agregarCalificacion(double calificacion) {
+        if (calificacion <= 5.0) {
+            calificaciones.add(calificacion);
+            return new Mensajes("Calificación agregada con éxito");
+        } else {
+            return new Mensajes("Ingresar por favor notas no superiores a 5.0");
+        }
     }
 
     public double calcularPromedio() {

@@ -17,7 +17,7 @@ public class App {
 
         sistema.asignarCalificacion("David", 3.0);
         sistema.asignarCalificacion("David", 5.0);
-        sistema.asignarCalificacion("David", 3.9);
+        sistema.asignarCalificacion("David", 5.1);
 
         sistema.mostrarDetallesAlumnos();
     }
