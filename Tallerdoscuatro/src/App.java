@@ -1,62 +1,66 @@
-
-
 import java.util.Scanner;
 
 import com.softlond.ejercicio.cuatro.Hotel;
-import com.softlond.ejercicio.cuatro.comandos.ComandoCancelarReserva;
-import com.softlond.ejercicio.cuatro.comandos.ComandoHacerReserva;
-import com.softlond.ejercicio.cuatro.comandos.ComandoMostrarReservas;
-import com.softlond.ejercicio.cuatro.comandos.ComandoRegistrarCliente;
+import com.softlond.ejercicio.cuatro.comandos.*;
 
 public class App {
     public static void main(String[] args) {
-        try ( Scanner reader = new Scanner(System.in) ) {
-            Hotel hotel = new Hotel(Constantes.NUM_HABITACIONES);
+        Hotel hotel = new Hotel(Constantes.NUM_HABITACIONES);
+        ComandoRegistrarCliente comandoRegistrarCliente = new ComandoRegistrarCliente(hotel);
+        ComandoHacerReserva comandoHacerReserva = new ComandoHacerReserva(hotel);
+        ComandoCancelarReserva comandoCancelarReserva = new ComandoCancelarReserva(hotel);
+        ComandoMostrarReservas comandoMostrarReservas = new ComandoMostrarReservas(hotel);
 
-            ComandoRegistrarCliente comandoRegistrarCliente = new ComandoRegistrarCliente(hotel);
-            ComandoHacerReserva comandoHacerReserva = new ComandoHacerReserva(hotel);
-            ComandoCancelarReserva comandoCancelarReserva = new ComandoCancelarReserva(hotel);
-            ComandoMostrarReservas comandoMostrarReservas = new ComandoMostrarReservas(hotel);
+        System.out.println("Bienvenido al Hotel");
 
-            System.out.print("Bienvenido al Hotel \n");
-
+        try (Scanner scanner = new Scanner(System.in)) {
             boolean salir = false;
 
             while (!salir) {
-                System.out.print("\n¿Qué acción deseas realizar?");
-                System.out.print("\n1. Registrar nuevo cliente");
-                System.out.print("\n2. Hacer una reserva");
-                System.out.print("\n3. Cancelar una reserva");
-                System.out.print("\n4. Mostrar reservas");
-                System.out.print("\n5. Salir");
+                System.out.println("\n¿Qué acción deseas realizar?");
+                System.out.println("1. Registrar nuevo cliente");
+                System.out.println("2. Hacer una reserva");
+                System.out.println("3. Cancelar una reserva");
+                System.out.println("4. Mostrar reservas");
+                System.out.println("5. Salir");
 
-                String opcion = reader.nextLine();
-                reader.nextLine();
-                switch (opcion) {
-                    case "1":
-                        comandoRegistrarCliente.ejecutar();
-                        break;
+                if (scanner.hasNext()) {
+                    String opcion = scanner.next();
 
-                    case "2":
-                        comandoHacerReserva.ejecutar();
-                        break;
+                    switch (opcion) {
+                        case "1":
+                            comandoRegistrarCliente.ejecutar();
+                            break;
 
-                    case "3":
-                        comandoCancelarReserva.ejecutar();
-                        break;
+                        case "2":
+                            comandoHacerReserva.ejecutar();
+                            break;
 
-                    case "4":
-                        comandoMostrarReservas.ejecutar();
-                        break;
+                        case "3":
+                            comandoCancelarReserva.ejecutar();
+                            break;
 
-                    case "5":
-                        salir = true;
-                        System.out.print("\n¡Hasta luego!");
-                        break;
+                        case "4":
+                            comandoMostrarReservas.ejecutar();
+                            break;
 
-                    default:
-                        System.out.print("\nOpción inválida. Por favor, elige una opción válida.");
-                        break;
+                        case "5":
+                            salir = true;
+                            System.out.println("\n¡Hasta luego!");
+                            break;
+
+                        default:
+                            System.out.println("\nOpción inválida. Por favor, elige una opción válida.");
+                            break;
+                    }
+                } else {
+                    salir = true;
+                    System.out.println("\n¡Hasta luego!");
+                }
+
+                if (!salir) {
+                    System.out.println("\nPresiona ENTER para continuar...");
+                    scanner.nextLine(); // Espera a que el usuario presione ENTER
                 }
             }
         }

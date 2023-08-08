@@ -38,6 +38,8 @@ public class ComandoCancelarReserva implements Comando {
 
             if (hotel.cancelarReserva(cliente, habitacionSeleccionada)) {
                 new MensajeExito("Reserva cancelada.").mostrar();
+                ComandoMostrarReservas comandoMostrarReservas = new ComandoMostrarReservas(hotel);
+                comandoMostrarReservas.ejecutar();
             } else {
                 new MensajeError("No se pudo cancelar la reserva.").mostrar();
             }
