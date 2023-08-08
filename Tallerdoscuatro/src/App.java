@@ -1,7 +1,6 @@
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+
+import java.util.Scanner;
 
 import com.softlond.ejercicio.cuatro.Hotel;
 import com.softlond.ejercicio.cuatro.comandos.ComandoCancelarReserva;
@@ -11,7 +10,7 @@ import com.softlond.ejercicio.cuatro.comandos.ComandoRegistrarCliente;
 
 public class App {
     public static void main(String[] args) {
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
+        try ( Scanner reader = new Scanner(System.in) ) {
             Hotel hotel = new Hotel(Constantes.NUM_HABITACIONES);
 
             ComandoRegistrarCliente comandoRegistrarCliente = new ComandoRegistrarCliente(hotel);
@@ -19,7 +18,7 @@ public class App {
             ComandoCancelarReserva comandoCancelarReserva = new ComandoCancelarReserva(hotel);
             ComandoMostrarReservas comandoMostrarReservas = new ComandoMostrarReservas(hotel);
 
-            System.out.print("Bienvenido al Hotel XYZ\n");
+            System.out.print("Bienvenido al Hotel \n");
 
             boolean salir = false;
 
@@ -31,8 +30,8 @@ public class App {
                 System.out.print("\n4. Mostrar reservas");
                 System.out.print("\n5. Salir");
 
-                String opcion = reader.readLine();
-
+                String opcion = reader.nextLine();
+                reader.nextLine();
                 switch (opcion) {
                     case "1":
                         comandoRegistrarCliente.ejecutar();
@@ -60,8 +59,6 @@ public class App {
                         break;
                 }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 }

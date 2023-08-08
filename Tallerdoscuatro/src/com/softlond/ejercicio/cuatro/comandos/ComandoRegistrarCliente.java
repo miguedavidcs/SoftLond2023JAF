@@ -35,10 +35,10 @@ public void ejecutar() {
 
         if (hotel.registrarCliente(clienteRegistrado)) {
             new MensajeExito("Cliente registrado exitosamente.").mostrar();
-            scan.close();
+            scan.nextLine();
         } else {
             new MensajeError("El cliente ya existe.").mostrar();
-            scan.close();
+            scan.nextLine();
         }
         
     }
