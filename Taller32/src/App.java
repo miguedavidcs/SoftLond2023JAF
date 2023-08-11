@@ -55,13 +55,13 @@ public class App {
 
         switch (opcion) {
             case 1:
-                canal = new CorreoElectronico("Correo Electrónico", "correo@example.com");
+                canal = new CorreoElectronico("Correo Electrónico", "midacasa17@gmal.com");
                 break;
             case 2:
-                canal = new MensajeTexto("Mensaje de Texto", "+123456789");
+                canal = new MensajeTexto("Mensaje de Texto", "+573105079318");
                 break;
             case 3:
-                canal = new NotificacionPush("Notificación Push", "abcdef123456");
+                canal = new NotificacionPush("Notificación Push", "A1067944272");
                 break;
             default:
                 System.out.println("Opción inválida. No se ha realizado la suscripción.");
