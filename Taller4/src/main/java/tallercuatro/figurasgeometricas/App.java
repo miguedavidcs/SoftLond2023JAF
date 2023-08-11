@@ -16,7 +16,7 @@ public class App {
         do {
             System.out.println("Qué figura geométrica desea conocer:");
             System.out.println("| Opciones de Dimensiones |");
-            System.out.println("| 0 - Una    Dimensión     |");
+            System.out.println("| 0 - Cero    Dimensión     |");
             System.out.println("| 1 - Una    Dimensión     |");
             System.out.println("| 2 - Dos    Dimensiones   |");
 
