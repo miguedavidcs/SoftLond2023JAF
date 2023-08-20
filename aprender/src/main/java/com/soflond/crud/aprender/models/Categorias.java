@@ -13,29 +13,36 @@ public class Categorias {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    
     @Column(name = "nombre")
     private String nombre;
+
     public Categorias() {
-        //*Constructor vacio */
+        // Constructor vacío
     }
-    
-    public Categorias(String nombre) {
-        super();
+
+    public Categorias(int id) {
+        this.id = id;
+    }
+
+    public Categorias(int id, String nombre) {
+        this.id = id;
         this.nombre = nombre;
     }
 
     public int getId() {
         return id;
     }
+
     public void setId(int id) {
         this.id = id;
     }
+
     public String getNombre() {
         return nombre;
     }
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
-    
 }

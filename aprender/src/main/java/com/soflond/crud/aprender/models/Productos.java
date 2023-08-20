@@ -39,12 +39,13 @@ public class Productos {
     }
     
 
-    public Productos(String nombre, BigDecimal precio, Categorias id_categorias, Proveedor id_provedor) {
+    public Productos(int id,String nombre, BigDecimal precio, Categorias id_categorias, Proveedor id_proveedor) {
         super();
+        this.id=id;
         this.nombre = nombre;
         this.precio = precio;
         this.id_categorias = id_categorias;
-        this.id_proveedor = id_provedor;
+        this.id_proveedor = id_proveedor;
     }
 
 
@@ -80,11 +81,19 @@ public class Productos {
         this.id_categorias = id_categorias;
     }
 
-    public Proveedor getId_provedor() {
+    public Proveedor getId_proveedor() {
         return id_proveedor;
     }
 
-    public void setId_provedor(Proveedor id_provedor) {
+    public void setId_proveedor(Proveedor id_provedor) {
         this.id_proveedor = id_provedor;
     }
+
+
+    @Override
+    public String toString() {
+        return "Productos [id=" + id + ", nombre=" + nombre + ", precio=" + precio + ", id_categorias=" + id_categorias
+                + ", id_proveedor=" + id_proveedor + "]";
+    }
+    
 }

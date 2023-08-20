@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <form [formGroup]="productoForm" (ngSubmit)="guardar()" class="card p-4">
+        <h2 class="mb-4">Agregar Producto</h2>
+        <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" formControlName="nombre" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="precio">Precio:</label>
+            <input type="number" id="precio" formControlName="precio" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="categorias">Categorías:</label>
+            <select name="categorias" id="categorias" formControlName="categorias" class="form-control">
+                <option [ngValue]="item.id" *ngFor="let item of categorias">{{ item.nombre }}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="proveedor">Proveedores:</label>
+            <select name="proveedor" id="proveedor" formControlName="proveedor" class="form-control">
+                <option [ngValue]="itemp.id" *ngFor="let itemp of proveedor">{{ itemp.nombre }}</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+</div>
+
+<div class="container mt-5">
+    <h2>Productos Guardados</h2>
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Categoría</th>
+                    <th>Proveedor</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let producto of productos | async">
+                    <td>{{ producto.nombre }}</td>
+                    <td>{{ producto.precio }}</td>
+                    <td>{{ producto.id_categorias?.nombre }}</td> 
+                    <td>{{ producto.id_proveedor?.nombre }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
