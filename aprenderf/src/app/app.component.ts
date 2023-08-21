@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductosService } from './services/productos/productos.service';
 import { CategoriasService } from './services/categorias/categorias.service';
 import { ProveedoresService } from './services/proveedores/proveedores.service';
-import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +14,7 @@ export class AppComponent implements OnInit {
   productoForm!: FormGroup;
   categorias: any[] = [];
   proveedor: any[] = [];
-  productos: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+  productos: any[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -25,13 +24,23 @@ export class AppComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.initForm();
+
+    this.loadCategorias();
+    this.loadProveedores();
+    this.loadProductos();
+  }
+
+  initForm(): void {
     this.productoForm = this.fb.group({
       nombre: ['', Validators.required],
       precio: ['', Validators.required],
       categorias: ['', Validators.required],
       proveedor: ['', Validators.required]
     });
+  }
 
+  loadCategorias(): void {
     this.categoriasService.getAllCategorias().subscribe({
       next: resp => {
         this.categorias = resp;
@@ -40,7 +49,9 @@ export class AppComponent implements OnInit {
         console.error('Error al cargar categorías:', error);
       }
     });
+  }
 
+  loadProveedores(): void {
     this.proveedoresService.getAllProveedores().subscribe({
       next: resp => {
         this.proveedor = resp;
@@ -49,8 +60,17 @@ export class AppComponent implements OnInit {
         console.error('Error al cargar proveedores:', error);
       }
     });
+  }
 
-    this.cargarTablaProductos(); 
+  loadProductos(): void {
+    this.productosService.getAllProductos().subscribe({
+      next: resp => {
+        this.productos = resp;
+      },
+      error: error => {
+        console.error('Error al cargar productos:', error);
+      }
+    });
   }
 
   guardar(): void {
@@ -61,12 +81,12 @@ export class AppComponent implements OnInit {
         id_categorias: this.productoForm.value.categorias,
         id_proveedor: this.productoForm.value.proveedor,
       };
-      console.log('Datos del producto a guardar:', productoData);
+
       this.productosService.saveProducto(productoData).subscribe(
         resp => {
           console.log('Producto guardado con éxito:', resp);
           this.productoForm.reset();
-          this.cargarTablaProductos(); 
+          this.productos.push(resp);
         },
         error => {
           console.error('Error al guardar el producto:', error);
@@ -75,14 +95,23 @@ export class AppComponent implements OnInit {
     }
   }
 
-  private cargarTablaProductos(): void {
-    this.productosService.getAllProductos().subscribe({
-      next: resp => {
-        this.productos.next(resp);
+  eliminar(producto: any): void {
+    this.productosService.deleteProducto(producto.id).subscribe(
+      resp => {
+        if (resp) {
+          console.log('Producto eliminado con éxito:', resp);
+          const index = this.productos.indexOf(producto);
+          if (index !== -1) {
+            this.productos.splice(index, 1);
+          }
+        } else {
+          console.log('Error al eliminar el producto');
+        }
       },
-      error: error => {
-        console.error('Error al cargar productos:', error);
+      error => {
+        console.error('Error al eliminar el producto:', error);
       }
-    });
+    );
   }
+
 }

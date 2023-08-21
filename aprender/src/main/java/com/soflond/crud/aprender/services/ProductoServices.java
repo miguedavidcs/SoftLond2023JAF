@@ -46,5 +46,16 @@ public class ProductoServices {
         
         return productoRespuesta;
     }
+    public void deleteById(Long id){
+        productoRepository.deleteById(id);
+    }
+    public void delete(Productos entity){
+        productoRepository.delete(entity);
+    }
+
+    public Productos findById(Long id) {
+        return productoRepository.findById(id).orElse(null);
+    }
+    
     
 }

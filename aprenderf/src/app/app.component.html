@@ -21,7 +21,7 @@
                 <option [ngValue]="itemp.id" *ngFor="let itemp of proveedor">{{ itemp.nombre }}</option>
             </select>
         </div>
-        <button type="submit" class="btn btn-primary">Guardar</button>
+        <button type="submit" class="btn btn-primary" [disabled]="productoForm.invalid">Guardar</button>
     </form>
 </div>
 
@@ -35,14 +35,23 @@
                     <th>Precio</th>
                     <th>Categoría</th>
                     <th>Proveedor</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let producto of productos | async">
+                <tr *ngFor="let producto of productos">
                     <td>{{ producto.nombre }}</td>
                     <td>{{ producto.precio }}</td>
                     <td>{{ producto.id_categorias?.nombre }}</td> 
                     <td>{{ producto.id_proveedor?.nombre }}</td>
+                    <td>
+                        <button type="button" class="btn btn-danger btn-sm" (click)="eliminar(producto)">
+                            <i class="bi bi-trash"></i> Eliminar
+                        </button>
+                        <button type="button" class="btn btn-info btn-sm">
+                            <i class="bi bi-pencil"></i> Editar
+                        </button>
+                    </td>
                 </tr>
             </tbody>
         </table>

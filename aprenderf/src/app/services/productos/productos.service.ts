@@ -7,26 +7,30 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ProductosService {
-  private API_SERVER = "http://localhost:8081/Productos/"
+  private API_SERVER = "http://localhost:8081/Productos/";
 
-  constructor(
-    private httpClient: HttpClient
-  ) { }
+  constructor(private httpClient: HttpClient) { }
 
-  public getAllProductos(): Observable<any> {
-    return this.httpClient.get(this.API_SERVER);
+  getAllProductos(): Observable<any> {
+    return this.httpClient.get(this.API_SERVER).pipe(
+      catchError(this.handleError)
+    );
   }
 
-  public saveProducto(productos: any): Observable<any> {
-    return this.httpClient.post(this.API_SERVER, productos)
-      .pipe(
-        catchError(this.handleError)
-      );
+  saveProducto(productos: any): Observable<any> {
+    return this.httpClient.post(this.API_SERVER, productos).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  deleteProducto(id: number): Observable<any> {
+    return this.httpClient.delete(`${this.API_SERVER}delete/${id}`).pipe(
+      catchError(this.handleError)
+    );
   }
 
   private handleError(error: HttpErrorResponse) {
     console.error('Error:', error);
-    return throwError(() => new Error('Error al obtener los productos: ' + error));
-
+    return throwError(() => new Error('Error al obtener los productos: ' + error.message));
   }
 }
