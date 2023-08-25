@@ -1,5 +1,6 @@
+<!-- Agregar Producto Form -->
 <div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
-    <form [formGroup]="productoForm" (ngSubmit)="guardar()" class="card p-4">
+    <form [formGroup]="productoForm" (ngSubmit)="guardar()">
         <h2 class="mb-4">Agregar Producto</h2>
         <div class="form-group">
             <label for="nombre">Nombre:</label>
@@ -21,10 +22,11 @@
                 <option [ngValue]="itemp.id" *ngFor="let itemp of proveedor">{{ itemp.nombre }}</option>
             </select>
         </div>
-        <button type="submit" class="btn btn-primary" [disabled]="productoForm.invalid">Guardar</button>
+        <button type="submit" class="btn btn-primary">Guardar</button>
     </form>
 </div>
 
+<!-- Productos Table -->
 <div class="container mt-5">
     <h2>Productos Guardados</h2>
     <div class="table-responsive">
@@ -48,7 +50,7 @@
                         <button type="button" class="btn btn-danger btn-sm" (click)="eliminar(producto)">
                             <i class="bi bi-trash"></i> Eliminar
                         </button>
-                        <button type="button" class="btn btn-info btn-sm">
+                        <button type="button" class="btn btn-info btn-sm" (click)="abrirModalEditar(producto)">
                             <i class="bi bi-pencil"></i> Editar
                         </button>
                     </td>
@@ -57,3 +59,6 @@
         </table>
     </div>
 </div>
+
+<!-- Modal para Editar Producto -->
+

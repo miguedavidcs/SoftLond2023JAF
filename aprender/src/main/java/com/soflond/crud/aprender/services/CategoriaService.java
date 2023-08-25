@@ -34,5 +34,4 @@ public class CategoriaService {
         return categoriasRepository.findById(id);
     }
 
-    // Aquí puedes agregar más métodos con lógica adicional si es necesario
 }

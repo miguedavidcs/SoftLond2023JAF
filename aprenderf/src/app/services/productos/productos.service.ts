@@ -28,6 +28,14 @@ export class ProductosService {
       catchError(this.handleError)
     );
   }
+  updateProducto(id: number, productos: any): Observable<any> {
+    return this.httpClient.put(`${this.API_SERVER}update/${id}`, productos)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+  
+  
 
   private handleError(error: HttpErrorResponse) {
     console.error('Error:', error);

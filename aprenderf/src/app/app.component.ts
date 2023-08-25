@@ -4,6 +4,8 @@ import { ProductosService } from './services/productos/productos.service';
 import { CategoriasService } from './services/categorias/categorias.service';
 import { ProveedoresService } from './services/proveedores/proveedores.service';
 
+
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -15,17 +17,18 @@ export class AppComponent implements OnInit {
   categorias: any[] = [];
   proveedor: any[] = [];
   productos: any[] = [];
+  editarProductoId: number | null = null;
 
   constructor(
     private fb: FormBuilder,
     private productosService: ProductosService,
     private proveedoresService: ProveedoresService,
-    private categoriasService: CategoriasService
+    private categoriasService: CategoriasService,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
     this.initForm();
-
     this.loadCategorias();
     this.loadProveedores();
     this.loadProductos();
@@ -114,4 +117,18 @@ export class AppComponent implements OnInit {
     );
   }
 
+  abrirModalEditar(producto: any): void {
+    const dialogRef = this.dialog.open(EditarProductoModalComponent, {
+      data: producto
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        const index = this.productos.findIndex(p => p.id === result.id);
+        if (index !== -1) {
+          this.productos[index] = result;
+        }
+      }
+    });
+  }
 }

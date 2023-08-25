@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
@@ -29,7 +30,7 @@ public class ProductoRest {
     private ProductoServices productoServices;
 
     @Autowired
-    private ProveedorService proveedorService; // Usar el servicio en lugar del repositorio
+    private ProveedorService proveedorService;
 
     @Autowired
     private CategoriaService categoriaService; // Usar el servicio en lugar del repositorio
@@ -80,6 +81,25 @@ public class ProductoRest {
         boolean productoExists = productoServices.findById(id) != null;
 
         return ResponseEntity.ok(!productoExists);
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Productos> updateProducto(@PathVariable Long id, @RequestBody Productos producto) {
+        Productos existingProducto = productoServices.findById(id);
+
+        if (existingProducto != null) {
+            // Actualizar los campos del producto con los valores recibidos
+            existingProducto.setNombre(producto.getNombre());
+            existingProducto.setPrecio(producto.getPrecio());
+            existingProducto.setId_categorias(producto.getId_categorias());
+            existingProducto.setId_proveedor(producto.getId_proveedor());
+
+            // Guardar el producto actualizado en la base de datos
+            Productos updatedProducto = productoServices.save(existingProducto);
+            return ResponseEntity.ok(updatedProducto);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
 }

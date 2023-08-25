@@ -5,9 +5,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http'
+import { EditarProductoModalComponent } from './editar-producto-modal/editar-producto-modal.component'; // Import this line
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    EditarProductoModalComponent
   ],
   imports: [
     BrowserModule,
@@ -15,7 +18,8 @@ import {HttpClientModule} from '@angular/common/http'
     FormsModule, 
     ReactiveFormsModule,
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
