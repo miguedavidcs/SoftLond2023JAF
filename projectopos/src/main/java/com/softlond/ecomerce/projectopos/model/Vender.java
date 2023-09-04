@@ -17,8 +17,8 @@ import lombok.Setter;
 import lombok.ToString;
 @Getter @Setter @AllArgsConstructor @NoArgsConstructor @ToString
 @Entity
-@Table(name = "ordenes")
-public class Orden {
+@Table(name = "vendidos")
+public class Vender {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

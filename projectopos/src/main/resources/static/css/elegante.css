@@ -1,0 +1,53 @@
+/* Cambia el color de fondo del encabezado a tono de azul */
+.navbar-dark.bg-dark {
+    background-color: #1a237e; /* Azul oscuro */
+  }
+  
+  /* Cambia el color del texto del encabezado a blanco */
+  .navbar-dark .navbar-nav .nav-link {
+    color: #FFFFFF; /* Blanco */
+  }
+  
+  /* Cambia el color del botón de búsqueda a tono de azul */
+  .btn-outline-success {
+    border-color:  #1565c0; /* Azul */
+    color: #1565c0; /* Azul */
+  }
+  
+  /* Cambia el color del botón de búsqueda al pasar el mouse por encima a blanco */
+  .btn-outline-success:hover {
+    background-color: #FFFFFF; /* Blanco */
+    color: #1565c0; /* Azul */
+  }
+  
+  /* Cambia el color de fondo del pie de página a tono de azul */
+  .py-5.bg-dark {
+    background-color:  #1a237e; /* Azul oscuro */
+  }
+  
+  /* Cambia el color del texto del pie de página a blanco */
+  .text-white {
+    color: #FFFFFF; /* Blanco */
+  }
+  
+  /* Cambia el color de fondo de la tarjeta a tono de azul */
+  .card {
+    background-color: #1976d2; /* Azul */
+  }
+  
+  /* Cambia el color del texto de la tarjeta a blanco */
+  .card-text {
+    color: #FFFFFF; /* Blanco */
+  }
+  
+  /* Cambia el color de fondo del botón en la tarjeta a tono de azul */
+  .card-footer .btn {
+    background-color: #1976d2; /* Azul */
+    border-color: #1a237e; /* Azul oscuro */
+  }
+  
+  /* Cambia el color del texto del botón en la tarjeta a blanco */
+  .card-footer .btn {
+    color: #FFFFFF; /* Blanco */
+  }
+  
